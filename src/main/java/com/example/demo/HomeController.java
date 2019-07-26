@@ -36,11 +36,11 @@ public class HomeController {
         // return resistration;
     }
 
-        @RequestMapping("/")
-  public String index()
-   {
-       return "index";
-    }
+//        @RequestMapping("/")
+//  public String index()
+//   {
+//       return "index";
+//    }
     @RequestMapping("/login")
     public String login(){
         return "login";
