@@ -3,6 +3,7 @@ package com.example.demo;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 public class Project {
@@ -10,21 +11,21 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
+
     private String title;
 
-    @NotNull
-    @Size(min = 10)
+
     private String description;
 
-    @NotNull
+
     private String start_date;
 
     private String lead;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "issue_id")
-    private Issue issue;
+
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public Set<Issue> issue;
+
 
     public long getId() {
         return id;
@@ -66,11 +67,11 @@ public class Project {
         this.lead = lead;
     }
 
-    public Issue getIssue() {
+    public Set<Issue> getIssue() {
         return issue;
     }
 
-    public void setIssue(Issue issue) {
+    public void setIssue(Set<Issue> issue) {
         this.issue = issue;
     }
 }

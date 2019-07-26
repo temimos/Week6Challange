@@ -16,44 +16,34 @@ public class Issue {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
-    @Size(min = 4)
+
     private String name;
 
 
-    @NotNull
+
     private String priority;
 
-    @NotNull
-    @Size(min = 2)
+
     private String status;
 
-    @NotNull
-    @Size(min = 2)
+
     private String description;
 
-    @NotNull
-    @Size(min = 2)
+
     private String who_sub;
 
-    @NotNull
-    @Size(min = 2)
+
     private String assigned;
 
 
-    @NotNull
-    @Size(min = 2)
     private String steps;
 
 
 
+    @ManyToOne()
+    private Project project;
 
 
-
-    @OneToMany(mappedBy = "issue",
-            fetch = FetchType.EAGER,
-            orphanRemoval = true)
-    public Set<Project> project;
 
     public long getId() {
         return id;
@@ -119,11 +109,5 @@ public class Issue {
         this.steps = steps;
     }
 
-    public Set<Project> getProject() {
-        return project;
-    }
 
-    public void setProject(Set<Project> project) {
-        this.project = project;
-    }
 }
